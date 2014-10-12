@@ -2,6 +2,23 @@
 // Wes Johnson (@SterlingWes)
 //
 // inspired by http://martin.ankerl.com/2009/12/09/how-to-create-random-colors-programmatically/
+String.prototype.hashCode = function() {
+    var hash = 0, i, chr, len;
+    if (this.length == 0) return hash;
+    for (i = 0, len = this.length; i < len; i++) {
+        chr   = this.charCodeAt(i);
+        hash  = ((hash << 5) - hash) + chr;
+        hash |= 0; // Convert to 32bit integer
+    }
+    return hash;
+};
+
+var rc = {};
+
+function random() {
+    var x = Math.sin(rc.seed++) * 10000;
+    return x - Math.floor(x);
+}
 
 (function (root, factory) {
     if (typeof exports === 'object') {
@@ -14,7 +31,7 @@
 }(this, function () {
 
     var RColor = function() {
-        this.hue			= Math.random(),
+        this.hue			= random(),
             this.goldenRatio 	= 0.618033988749895;
         this.hexwidth		= 2;
     };

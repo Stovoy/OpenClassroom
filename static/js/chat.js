@@ -9,8 +9,6 @@ var $chatInput;
 var $chatButton;
 var $chatHistory;
 var lastMessageID = 0;
-var colors = {};
-var rcolor = new RColor;
 
 $(document).ready(function() {
     // Load datastore
@@ -37,6 +35,9 @@ $(document).ready(function() {
 });
 
 oc.chat.sendMessage = function(message) {
+    if (id === undefined) {
+        return;
+    }
     $.ajax({
         method: "POST",
         url: "/chat/message/",
@@ -104,15 +105,17 @@ oc.chat.refresh = function() {
         if (data.NewMessages) {
             var messages = data.NewMessages;
             for (i = 0; i < messages.length; i++) {
-                if (parseInt(messages[i].ID) > parseInt(lastMessageID)) {
+                var idInt = parseInt(messages[i].ID);
+                var oldIdInt = parseInt(lastMessageID);
+                if (idInt > oldIdInt) {
                     lastMessageID = messages[i].ID;
+                } else {
+                    continue;
                 }
                 var username = messages[i].User;
-                color = colors[username];
-                if (color === undefined) {
-                    color = rcolor.get(true);
-                    colors[username] = color;
-                }
+                var rcolor = new RColor;
+                rc.seed = username.hashCode();
+                color = rcolor.get(true);
                 var timestamp = '[' + messages[i].Time + ']';
                 var user =
                     '<a href="/user/' + username + '">' +
