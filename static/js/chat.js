@@ -70,6 +70,11 @@ oc.chat.refresh = function() {
         var i;
         if (data.Users) {
             var users = data.Users;
+            users.sort(function(a,b){
+                if (a.Name == b.Name) return 0;
+                if (a.Name < b.Name) return -1;
+                if (a.Name > b.Name) return 1;
+            });
             var $usersHeader = $('#users-header');
             var $chatUserArea = $('#chat-user-area');
             $usersHeader.siblings().remove();

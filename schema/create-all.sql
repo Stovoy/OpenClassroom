@@ -27,7 +27,15 @@ CREATE TABLE chat_messages (
   message TEXT NOT NULL
 );
 
+CREATE TABLE activity (
+  id BIGSERIAL UNIQUE,
+  user_id BIGINT NOT NULL,
+  action TEXT NOT NULL,
+  time TIMESTAMP NOT NULL
+);
+
 -- Foreign Keys
 
 ALTER TABLE chat_messages ADD FOREIGN KEY (user_id) REFERENCES users (id);
 ALTER TABLE chat_messages ADD FOREIGN KEY (chat_id) REFERENCES chats (id);
+ALTER TABLE activity ADD FOREIGN KEY (user_id) REFERENCES users (id);

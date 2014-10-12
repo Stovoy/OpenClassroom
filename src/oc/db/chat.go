@@ -34,7 +34,8 @@ func GetChatMessagesAfter(chat string, lastMessage string) ([]ChatMessage, error
 		 WHERE m.chat_id=w.id AND
 		 w.page=$1 AND
 		 m.id>$2 AND
-		 m.user_id=users.id`, chat, lastMessage)
+		 m.user_id=users.id
+		 ORDER BY m.id`, chat, lastMessage)
 	if err != nil {
 		return messages, err
 	}
@@ -43,10 +44,10 @@ func GetChatMessagesAfter(chat string, lastMessage string) ([]ChatMessage, error
 		var t time.Time
 
 		err = rows.Scan(&message.ID, &message.User, &t, &message.Message)
-		message.Time = t.Format("02 Jan 06 15:04")
 		if err != nil {
 			return messages, err
 		}
+		message.Time = t.Format("02 Jan 06 15:04")
 		messages = append(messages, message)
 	}
 	return messages, nil

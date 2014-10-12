@@ -2,6 +2,7 @@
 {{template "header"}}
 <body>
 {{template "top-bar" .}}
+<span id="data-store" data-user="{{.PageUsername}}" style="display: none;"></span>
 <style>
     #top-bar {
         margin-left: -8px;
@@ -12,9 +13,8 @@
         margin-top: -6px;
     }
 </style>
-<div id="user-content">
-    User Page Here
-</div>
-<textarea id="chat-input" ></textarea>
+<h1>User {{.PageUsername}}'s Page</h1>
+<h1>Recent Activity</h1>
+<div class="activity" id="user-activity"></div>
 </body>
 </html>

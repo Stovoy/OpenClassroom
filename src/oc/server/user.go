@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"fmt"
+	"github.com/gorilla/mux"
 	"oc/db"
 	"text/template"
 )
@@ -85,6 +86,8 @@ func registerHandler(c *Context, w http.ResponseWriter, r *http.Request) {
 }
 
 func userHandler(c *Context, w http.ResponseWriter, r *http.Request) {
+	user := mux.Vars(r)["user"]
+
 	t := template.Must(template.ParseFiles(
 		"../static/html/user.html",
 		"../static/html/head.html",
@@ -93,7 +96,8 @@ func userHandler(c *Context, w http.ResponseWriter, r *http.Request) {
 	err := t.Execute(w, struct {
 		Authenticated bool
 		Username      string
-	}{c.Authenticated, c.Username})
+		PageUsername  string
+	}{c.Authenticated, c.Username, user})
 	if err != nil {
 		errorResponse(w, err)
 	}

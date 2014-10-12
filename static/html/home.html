@@ -1,11 +1,23 @@
 <html>
 {{template "header"}}
 <body>
+{{template "top-bar" .}}
 <h1>Open Classroom</h1>
-<form id="search-form">
-    <label>Search
-        <input type="text" id="search-text">
-    </label>
-</form>
+<p>
+    Open Classroom is an awesome product.
+</p>
+<img id="main-image" src="http://upload.wikimedia.org/wikipedia/commons/2/26/Andrew_Classroom_De_La_Salle_University.jpeg"/>
+<h1>Recent Activity</h1>
+<div class="activity" id="global-activity"></div>
+<style>
+    #top-bar {
+        margin-left: -8px;
+        margin-top: -8px;
+        margin-right: -8px;
+    }
+    #username #text {
+        margin-top: -6px;
+    }
+</style>
 </body>
 </html>

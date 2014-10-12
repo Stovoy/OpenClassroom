@@ -25,4 +25,7 @@ $(document).ready(function() {
         e.preventDefault();
         oc.user.logout();
     });
+    $('#home-button').on('click', function() {
+        window.location.href = "/";
+    });
 });

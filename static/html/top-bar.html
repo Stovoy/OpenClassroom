@@ -1,5 +1,6 @@
 {{define "top-bar"}}
 <div id="top-bar">
+    <button id="home-button">Home</button>
     {{if .Authenticated}}
     <div id="username">
         <div id="text">
@@ -11,7 +12,7 @@
     </div>
     <style>
         #top-bar {
-            height: 75px !important;
+            height: 175px !important;
         }
     </style>
     {{else}}
@@ -44,5 +45,12 @@
         </form>
     </div>
     {{end}}
+    <div id="search-text-lbl">
+        <form id="search-form">
+            <h1>Search</h1>
+            <input type="text" id="search-text">
+            <input type="submit">
+        </form>
+    </div>
 </div>
 {{end}}

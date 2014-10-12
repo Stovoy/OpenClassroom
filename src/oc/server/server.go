@@ -34,7 +34,7 @@ func Start() {
 	handleFunc(router, "/login/", loginHandler)
 	handleFunc(router, "/logout/", logoutHandler)
 	handleFunc(router, "/register/", registerHandler)
-	handleFunc(router, "/user/{username:.*}", userHandler)
+	handleFunc(router, "/user/{user:.*}", userHandler)
 
 	// Pages
 	handleFunc(router, "/search/{page:.+}", searchHandler)
@@ -43,6 +43,10 @@ func Start() {
 	// Chat
 	handleFunc(router, "/chat/loadNew/", chatLoadNewHandler)
 	handleFunc(router, "/chat/message/", chatMessageHandler)
+
+	// Activity
+	handleFunc(router, "/activity/global/", activityLoadGlobalHandler)
+	handleFunc(router, "/activity/{user:.+}/", activityLoadUserHandler)
 
 	// Static
 	router.HandleFunc("/js/{file:.+}", jsHandler)

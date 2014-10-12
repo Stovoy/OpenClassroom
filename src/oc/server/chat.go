@@ -117,6 +117,10 @@ func chatMessageHandler(c *Context, w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			errorJSONResponse(w, err)
 		}
+		err = db.WriteActivity("Sent a message in "+page, c.Username)
+		if err != nil {
+			errorJSONResponse(w, err)
+		}
 		printJSON(w, struct{ Result string }{"Successful"})
 	} else {
 		errorJSONResponse(w, fmt.Errorf("Not logged in"))
