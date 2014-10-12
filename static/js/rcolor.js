@@ -16,6 +16,7 @@ String.prototype.hashCode = function() {
 var rc = {};
 
 function random() {
+    console.log(rc.seed);
     var x = Math.sin(rc.seed++) * 10000;
     return x - Math.floor(x);
 }

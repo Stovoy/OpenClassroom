@@ -113,9 +113,10 @@ oc.chat.refresh = function() {
                     continue;
                 }
                 var username = messages[i].User;
-                var rcolor = new RColor;
                 rc.seed = username.hashCode();
+                var rcolor = new RColor;
                 color = rcolor.get(true);
+                console.log(username, rc.seed, color);
                 var timestamp = '[' + messages[i].Time + ']';
                 var user =
                     '<a href="/user/' + username + '">' +
