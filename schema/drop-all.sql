@@ -1,0 +1,5 @@
+-- Table
+DROP TABLE users CASCADE;
+DROP TABLE wiki CASCADE;
+DROP TABLE chats CASCADE;
+DROP TABLE chat_messages CASCADE;

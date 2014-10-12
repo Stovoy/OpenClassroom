@@ -1,0 +1,206 @@
+.mw-body {
+    margin-left: 0 !important;
+}
+
+#top-bar {
+    height: 250px;
+    background-color: #f6f6f6;
+    border: 1px solid black;
+    padding: 0;
+    font-family: "Nimbus Roman No9 L", "Times New Roman", Times, serif !important;
+}
+
+
+#username #text {
+    clear: both;
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+#logout {
+    clear: both;
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.vert-splitter {
+    margin-left: auto;
+    margin-right: auto;
+    height: 250px;
+    width: 1px;
+    background-color: black;
+}
+
+/* Forms */
+#login-form {
+    float: left;
+    margin-left: 20px;
+    margin-right: auto;
+    margin-top: 0;
+    clear: both;
+}
+
+#reg-form {
+    float: right;
+    margin-left: auto;
+    margin-right: 20px;
+    margin-top: -250px;
+    clear: both;
+}
+
+/* Labels */
+#login-uname-lbl {
+    width: 350px;
+    float: left;
+    margin-top: 2px;
+}
+
+#login-pwd-lbl {
+    width: 350px;
+    float: left;
+    clear: left;
+    margin-top: 2px;
+}
+
+#reg-uname-lbl {
+    top: 0;
+    width: 350px;
+    float: right;
+    margin-top: 2px;
+}
+
+#reg-pwd-lbl {
+    width: 350px;
+    float: right;
+    clear: right;
+    margin-top: 2px;
+}
+
+#reg-pwd-dup-lbl {
+    width: 350px;
+    float: right;
+    clear: right;
+    margin-top: 2px;
+}
+
+/* Inputs */
+label input {
+    width: 350px;
+}
+
+/* Submit Buttons */
+#login-submit {
+    width: 350px;
+    float: left;
+    clear: left;
+    margin-top: 2px;
+}
+
+#reg-submit {
+    width: 350px;
+    float: right;
+    clear: right;
+    margin-top: 2px;
+}
+
+/* User */
+#user-content {
+    margin-top: 10px;
+}
+
+/* Chat */
+#chat {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    right: 2px;
+}
+
+#chat-area {
+    width: 75%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#chat-user-area {
+    width: 25%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 75%;
+    border-left: 1px solid black;
+    overflow: scroll;
+}
+
+#users-header {
+    display: inline-block;
+    border-bottom: 1px solid black;
+    width: 100%;
+    text-align: center;
+    padding-right: 0;
+}
+
+.guest-line {
+    display: block;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    padding-left: 5px;
+    color: gray;
+}
+
+.user-line {
+    display: block;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    padding-left: 5px;
+}
+
+.l1 {
+    background-color: #E6E6E6;
+}
+
+.l2 {
+    background-color: #EDEDED;
+}
+
+#chat-history {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 165px;
+    background-color: red;
+}
+
+#chat-input {
+    width: 90%;
+    height: 35px;
+    resize: none;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+#chat-button-area {
+    width: 10%;
+    height: 35px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+#chat-button {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 80px;
+    height: 20px;
+    transform: translate(-50%, -50%);
+}

@@ -1,0 +1,23 @@
+<html>
+{{template "header"}}
+<body>
+    <span id="data-store" data-page="{{.Page}}" style="display: none;"></span>
+    {{template "top-bar" .}}
+    <div id="chat">
+        <div id="chat-area">
+            <div id="chat-history">
+            </div>
+            <input type="text" id="chat-input">
+            <div id="chat-button-area">
+                <button id="chat-button">Send</button>
+            </div>
+        </div>
+        <div id="chat-user-area">
+            <span id="users-header">Currently Signed In Users</span>
+        </div>
+    </div>
+    <div id="content">
+        {{ .Content }}
+    </div>
+</body>
+</html>

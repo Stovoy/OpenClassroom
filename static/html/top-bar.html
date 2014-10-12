@@ -1,0 +1,48 @@
+{{define "top-bar"}}
+<div id="top-bar">
+    {{if .Authenticated}}
+    <div id="username">
+        <div id="text">
+            Logged in as <a href="/user/{{.Username}}">{{.Username}}</a>
+        </div>
+        <form id="logout-form">
+            <input id="logout" type="Submit" value="Logout">
+        </form>
+    </div>
+    <style>
+        #top-bar {
+            height: 75px !important;
+        }
+    </style>
+    {{else}}
+    <div>
+        <form id="login-form">
+            <h1 id="login-h1">Login</h1>
+            <label id="login-uname-lbl">Username
+                <input id="login-uname" type="text">
+            </label>
+            <label id="login-pwd-lbl">Password
+                <input id="login-pwd" type="password">
+            </label>
+            <input id="login-submit" type="submit">
+        </form>
+    </div>
+    <div class="vert-splitter"></div>
+    <div>
+        <form id="reg-form">
+            <h1 id="reg-h1">Register</h1>
+            <label id="reg-uname-lbl">Username
+                <input id="reg-uname" type="text">
+            </label>
+            <label id="reg-pwd-lbl">Password
+                <input id="reg-pwd" type="password">
+            </label>
+            <label id="reg-pwd-dup-lbl">Reenter Password
+                <input id="reg-pwd-dup" type="password">
+            </label>
+            <input id="reg-submit" type="submit">
+        </form>
+    </div>
+    {{end}}
+</div>
+{{end}}
