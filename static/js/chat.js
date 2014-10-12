@@ -9,6 +9,8 @@ var $chatInput;
 var $chatButton;
 var $chatHistory;
 var lastMessageID = 0;
+var colors = {};
+var rcolor = new RColor;
 
 $(document).ready(function() {
     // Load datastore
@@ -70,8 +72,8 @@ oc.chat.refresh = function() {
             var users = data.Users;
             var $usersHeader = $('#users-header');
             var $chatUserArea = $('#chat-user-area');
+            $usersHeader.siblings().remove();
             for (i = 0; i < users.length; i++) {
-                $usersHeader.siblings().remove();
                 var color = "l2";
                 if (i % 2 == 0) {
                     color = "l1";
@@ -95,16 +97,25 @@ oc.chat.refresh = function() {
         if (data.NewMessages) {
             var messages = data.NewMessages;
             for (i = 0; i < messages.length; i++) {
-                if (messages[i].ID > lastMessageID) {
+                if (parseInt(messages[i].ID) > parseInt(lastMessageID)) {
                     lastMessageID = messages[i].ID;
                 }
-                $chatHistory.append(
-                    '<div class="message">' +
-                        '<a href="/user/' + messages[i].User + '">' +
-                        messages[i].User + '</a>[' +
-                        messages[i].Time + ']: ' +
-                        messages[i].Message +
+                var username = messages[i].User;
+                var color = colors[username];
+                if (color === undefined) {
+                    color = rcolor.get(true);
+                    colors[username] = color;
+                }
+                var timestamp = '[' + messages[i].Time + ']';
+                var user =
+                    '<a href="/user/' + username + '">' +
+                    username + '</a>';
+                var $message = $('<div class="message">' +
+                    timestamp + ' ' + user + ': ' +
+                    messages[i].Message +
                     '</div>');
+                $message.css('background-color', color);
+                $chatHistory.append($message);
             }
         }
     });

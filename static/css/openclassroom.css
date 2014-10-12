@@ -199,6 +199,7 @@ label input {
 #chat-input {
     width: 90%;
     height: 35px;
+    padding-left: 10px;
     resize: none;
     position: absolute;
     left: 0;

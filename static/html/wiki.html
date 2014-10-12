@@ -7,10 +7,22 @@
         <div id="chat-area">
             <div id="chat-history">
             </div>
+            {{if .Authenticated}}
             <input type="text" id="chat-input">
             <div id="chat-button-area">
                 <button id="chat-button">Send</button>
             </div>
+            {{else}}
+            <style>
+                #content {
+                    top: 480px !important;
+                }
+            </style>
+            <input type="text" id="chat-input" value="Log in to chat." disabled>
+            <div id="chat-button-area">
+                <button id="chat-button" disabled>Send</button>
+            </div>
+            {{end}}
         </div>
         <div id="chat-user-area">
             <span id="users-header">Currently Signed In Users</span>

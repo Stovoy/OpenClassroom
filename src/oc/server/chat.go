@@ -64,7 +64,7 @@ func refreshChat(authenticated bool, page string, username string, identifier st
 		if guestChatConnections[page][identifier] == nil {
 			newGuestNumber := atomic.AddUint64(&guestNumber, 1)
 			guestChatConnections[page][identifier] = &GuestConnection{
-				Name:          "Guest" + string(newGuestNumber),
+				Name:          fmt.Sprintf("Guest-%d", newGuestNumber),
 				LastRefreshed: time.Now(),
 			}
 		} else {
@@ -78,7 +78,7 @@ func getChatUsers(page string) ([]User, error) {
 
 	for k, v := range signedInChatConnections[page] {
 		user := User{}
-		if v.LastRefreshed.Sub(time.Now()).Seconds() > 20 {
+		if time.Now().Sub(v.LastRefreshed).Seconds() > 3 {
 			delete(signedInChatConnections[page], k)
 			continue
 		}
@@ -88,8 +88,9 @@ func getChatUsers(page string) ([]User, error) {
 	}
 	for k, v := range guestChatConnections[page] {
 		user := User{}
-		if v.LastRefreshed.Sub(time.Now()).Seconds() > 20 {
+		if time.Now().Sub(v.LastRefreshed).Seconds() > 3 {
 			delete(guestChatConnections[page], k)
+			continue
 		}
 		user.IsGuest = true
 		user.Name = v.Name
