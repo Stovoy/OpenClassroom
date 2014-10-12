@@ -3,6 +3,7 @@ oc = oc || {};
 oc.search = oc.search || {};
 
 oc.search.page = function(text, sel, redirect, callback) {
+    text = text.replace(/ /g, "+");
     $.ajax({
         url: "/search/" + text
     }).done(function(data) {

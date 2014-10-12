@@ -135,7 +135,11 @@ oc.chat.refresh = function() {
 oc.chat.format = function(message) {
     if (message.lastIndexOf("[[[/wiki/", 0) === 0) {
         var re = /\[\[\[\/wiki\/(.+)\]\]\]/gi;
-        message = message.replace(re, 'Moved to <a href="/wiki/$1">$1</a>');
+        message = message.replace(re, '$1');
+        var originalMessage = message;
+        message = message.replace(/\+/g, " ");
+        message = 'Moved to <a href="/wiki/' +
+            originalMessage + '">' + message + '</a>';
     }
     return message;
 };
