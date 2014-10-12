@@ -42,6 +42,7 @@ func Start() {
 
 	// Chat
 	handleFunc(router, "/chat/loadNew/", chatLoadNewHandler)
+	handleFunc(router, "/chat/message/", chatMessageHandler)
 
 	// Static
 	router.HandleFunc("/js/{file:.+}", jsHandler)

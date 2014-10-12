@@ -19,6 +19,11 @@ oc.user.login = function(username, password) {
         $usernameLbl[0].firstChild.data = 'Username - Cannot be empty';
         failed = true;
     }
+    if (username.length > 20) {
+        $username.css('background-color', 'red');
+        $usernameLbl[0].firstChild.data = 'Username - Cannot be over 20 characters';
+        failed = true;
+    }
     if (password.length < 8) {
         $pwd.css('background-color', 'red');
         $pwdLbl[0].firstChild.data = 'Password - Must be at least 8 characters';

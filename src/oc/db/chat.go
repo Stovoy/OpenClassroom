@@ -8,9 +8,10 @@ import (
 func SendMessage(username string, message string, page string) error {
 	page = strings.ToLower(page)
 	username = strings.ToLower(username)
+
 	_, err := db.Exec(
 		`INSERT INTO chat_messages (chat_id, user_id, time, message)
-		 SELECT chat.id, users.id, $1, $2
+		 SELECT chats.id, users.id, $1, $2
 		 FROM chats, wiki, users
 		 WHERE wiki.page=$3 AND
 		 users.lowername=$4 AND
@@ -23,6 +24,8 @@ func SendMessage(username string, message string, page string) error {
 }
 
 func GetChatMessagesAfter(chat string, lastMessage string) ([]ChatMessage, error) {
+	chat = strings.ToLower(chat)
+
 	var messages []ChatMessage = make([]ChatMessage, 0)
 
 	rows, err := db.Query(
@@ -37,7 +40,10 @@ func GetChatMessagesAfter(chat string, lastMessage string) ([]ChatMessage, error
 	}
 	for rows.Next() {
 		message := ChatMessage{}
-		err = rows.Scan(&message.ID, &message.User, &message.Time, &message.Message)
+		var t time.Time
+
+		err = rows.Scan(&message.ID, &message.User, &t, &message.Message)
+		message.Time = t.Format("02 Jan 06 15:04")
 		if err != nil {
 			return messages, err
 		}

@@ -108,12 +108,16 @@ type User struct {
 	Name    string
 }
 
-func chatWriteHandler(c *Context, w http.ResponseWriter, r *http.Request) {
-	page := r.FormValue("page")
+func chatMessageHandler(c *Context, w http.ResponseWriter, r *http.Request) {
+	page := "/wiki/" + r.FormValue("page")
 	message := r.FormValue("message")
-
 	if c.Authenticated {
-		db.SendMessage(c.Username, message, page)
+		err := db.SendMessage(c.Username, message, page)
+		if err != nil {
+			errorJSONResponse(w, err)
+		}
+		printJSON(w, struct{ Result string }{"Successful"})
+	} else {
+		errorJSONResponse(w, fmt.Errorf("Not logged in"))
 	}
-	errorJSONResponse(w, fmt.Errorf("Not logged in"))
 }

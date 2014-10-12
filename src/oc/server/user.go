@@ -11,7 +11,7 @@ import (
 func loginHandler(c *Context, w http.ResponseWriter, r *http.Request) {
 	username := r.FormValue("username")
 	password := r.FormValue("password")
-	if len(username) == 0 || len(password) < 8 {
+	if len(username) == 0 || len(username) > 20 || len(password) < 8 {
 		errorJSONResponse(w, fmt.Errorf("Username and Password badly formatted"))
 		return
 	}
