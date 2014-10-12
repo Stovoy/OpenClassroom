@@ -27,17 +27,16 @@ $(document).ready(function() {
 
     $chatInput.on('keydown', function(e) {
         if (e.keyCode == 13) { // Enter
-            oc.chat.sendMessage();
+            oc.chat.sendMessage($chatInput.val());
         }
     });
 
     $chatButton.on('click', function() {
-        oc.chat.sendMessage();
+        oc.chat.sendMessage($chatInput.val());
     })
 });
 
-oc.chat.sendMessage = function() {
-    var message = $chatInput.val();
+oc.chat.sendMessage = function(message) {
     $.ajax({
         method: "POST",
         url: "/chat/message/",
@@ -71,6 +70,8 @@ oc.chat.refresh = function() {
         if (data.Users) {
             var users = data.Users;
             users.sort(function(a,b){
+                if (a.IsGuest && !b.IsGuest) return 1;
+                if (!a.IsGuest && b.IsGuest) return -1;
                 if (a.Name == b.Name) return 0;
                 if (a.Name < b.Name) return -1;
                 if (a.Name > b.Name) return 1;
@@ -78,8 +79,9 @@ oc.chat.refresh = function() {
             var $usersHeader = $('#users-header');
             var $chatUserArea = $('#chat-user-area');
             $usersHeader.siblings().remove();
+            var color;
             for (i = 0; i < users.length; i++) {
-                var color = "l2";
+                color = "l2";
                 if (i % 2 == 0) {
                     color = "l1";
                 }
@@ -88,7 +90,7 @@ oc.chat.refresh = function() {
                 if (!users[i].IsGuest) {
                     type = "user-line";
                     name =
-                        '<a href="/user/' + name +
+                        '<a class="user-link" href="/user/' + name +
                             '">' + name + '</a>'
                 }
                 $chatUserArea.append(
@@ -106,7 +108,7 @@ oc.chat.refresh = function() {
                     lastMessageID = messages[i].ID;
                 }
                 var username = messages[i].User;
-                var color = colors[username];
+                color = colors[username];
                 if (color === undefined) {
                     color = rcolor.get(true);
                     colors[username] = color;
@@ -117,11 +119,19 @@ oc.chat.refresh = function() {
                     username + '</a>';
                 var $message = $('<div class="message">' +
                     timestamp + ' ' + user + ': ' +
-                    messages[i].Message +
+                    oc.chat.format(messages[i].Message) +
                     '</div>');
                 $message.css('background-color', color);
                 $chatHistory.append($message);
             }
         }
     });
+};
+
+oc.chat.format = function(message) {
+    if (message.lastIndexOf("[[[/wiki/", 0) === 0) {
+        var re = /\[\[\[\/wiki\/(.+)\]\]\]/gi;
+        message = message.replace(re, 'Moved to <a href="/wiki/$1">$1</a>');
+    }
+    return message;
 };

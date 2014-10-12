@@ -48,6 +48,13 @@ func Start() {
 	handleFunc(router, "/activity/global/", activityLoadGlobalHandler)
 	handleFunc(router, "/activity/{user:.+}/", activityLoadUserHandler)
 
+	// Lesson
+	handleFunc(router, "/lesson/{lesson:.+}/", lessonLoadHandler)
+	handleFunc(router, "/lesson/create/", lessonCreateHandler)
+	handleFunc(router, "/lesson/write/", lessonWriteHandler)
+	handleFunc(router, "/lesson/global/", lessonLoadGlobalHandler)
+	handleFunc(router, "/lesson/user/{user:.+}/", lessonLoadUserHandler)
+
 	// Static
 	router.HandleFunc("/js/{file:.+}", jsHandler)
 	router.HandleFunc("/css/{file:.+}", cssHandler)

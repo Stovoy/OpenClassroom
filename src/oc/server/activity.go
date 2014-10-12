@@ -9,22 +9,20 @@ import (
 
 func activityLoadGlobalHandler(c *Context, w http.ResponseWriter, r *http.Request) {
 	activities, err := db.GetLast50Activities()
-
 	if err != nil {
 		errorJSONResponse(w, err)
 	}
 
-	printJSON(w, struct{ Activities interface{} }{Activities: activities})
+	printJSON(w, struct{ Activities interface{} }{activities})
 }
 
 func activityLoadUserHandler(c *Context, w http.ResponseWriter, r *http.Request) {
 	username := mux.Vars(r)["user"]
 
 	activities, err := db.GetLast50UserActivities(username)
-
 	if err != nil {
 		errorJSONResponse(w, err)
 	}
 
-	printJSON(w, struct{ Activities interface{} }{Activities: activities})
+	printJSON(w, struct{ Activities interface{} }{activities})
 }

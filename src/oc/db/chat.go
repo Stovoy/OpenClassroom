@@ -47,7 +47,7 @@ func GetChatMessagesAfter(chat string, lastMessage string) ([]ChatMessage, error
 		if err != nil {
 			return messages, err
 		}
-		message.Time = t.Format("02 Jan 06 15:04")
+		message.Time = t.Format("Mon, 02 Jan 2006 15:04:05")
 		messages = append(messages, message)
 	}
 	return messages, nil

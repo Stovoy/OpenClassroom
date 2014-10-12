@@ -4,7 +4,7 @@
     {{if .Authenticated}}
     <div id="username">
         <div id="text">
-            Logged in as <a href="/user/{{.Username}}">{{.Username}}</a>
+            Logged in as <a class="user-link" href="/user/{{.Username}}">{{.Username}}</a>
         </div>
         <form id="logout-form">
             <input id="logout" type="Submit" value="Logout">

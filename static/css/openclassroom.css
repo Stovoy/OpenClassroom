@@ -234,12 +234,12 @@ label input {
 
 #chat-input {
     width: 85%;
-    height: 35px;
+    height: 33px;
     padding-left: 10px;
     resize: none;
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: 2px;
 }
 
 #chat-button-area {
@@ -263,10 +263,34 @@ label input {
     position: absolute;
     width: 80px;
     height: 20px;
-    top: 155px;
+    top: 145px;
     left: 910px;
 }
 
 #main-image {
     width: 800px;
+}
+
+a.user-link {
+    font-weight: bold;
+}
+
+/* unvisited link */
+a.user-link:link {
+    color: #059bff;
+}
+
+/* visited link */
+a.user-link:visited {
+    color: #059bff;
+}
+
+/* mouse over link */
+a.user-link:hover {
+    color: #0077ff;
+}
+
+/* selected link */
+a.user-link:active {
+    color: #0000ff;
 }

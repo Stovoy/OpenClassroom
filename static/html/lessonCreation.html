@@ -1,0 +1,30 @@
+<html>
+{{template "header"}}
+<body>
+{{template "top-bar" .}}
+<h1>Create Lesson</h1>
+<form id="create-lesson-form">
+    <label id="lesson-name-lbl">Lesson Name
+        <br>
+        <input id="lesson-name" type="text">
+    </label>
+    <br>
+    <label>Starting Page
+        <br>
+        <input id="starting-page" type="text">
+    </label>
+    <br>
+    <input type="submit">
+</form>
+<style>
+    #top-bar {
+        margin-left: -8px;
+        margin-top: -8px;
+        margin-right: -8px;
+    }
+    #username #text {
+        margin-top: -6px;
+    }
+</style>
+</body>
+</html>

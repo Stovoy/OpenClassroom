@@ -30,7 +30,7 @@ oc.activity.loadGlobalActivity = function($globalActivity) {
             $globalActivity.empty();
             for (i = 0; i < activities.length; i++) {
                 var a = activities[i];
-                var user = '<a href="/user/' + a.User + '">' +
+                var user = '<a class="user-link" href="/user/' + a.User + '">' +
                     a.User + '</a>';
                 var timestamp = '[' + a.Time + ']';
                 var action = a.Action;
@@ -61,7 +61,7 @@ oc.activity.loadUserActivity = function(username, $userActivity) {
             $userActivity.empty();
             for (i = 0; i < activities.length; i++) {
                 var a = activities[i];
-                var user = '<a href="/user/' + a.User + '">' +
+                var user = '<a class="user-link" href="/user/' + a.User + '">' +
                     a.User + '</a>';
                 var timestamp = '[' + a.Time + ']';
                 var action = a.Action;

@@ -34,8 +34,26 @@ CREATE TABLE activity (
   time TIMESTAMP NOT NULL
 );
 
+CREATE TABLE lessons (
+  id BIGSERIAL UNIQUE,
+  name TEXT NOT NULL,
+  teacher_id BIGINT NOT NULL,
+  running BOOL NOT NULL,
+  start_time TIMESTAMP NOT NULL,
+  end_time TIMESTAMP
+);
+
+CREATE TABLE lesson_items (
+  id BIGSERIAL UNIQUE,
+  lesson_id BIGINT NOT NULL,
+  number BIGINT NOT NULL,
+  action TEXT NOT NULL
+);
+
 -- Foreign Keys
 
 ALTER TABLE chat_messages ADD FOREIGN KEY (user_id) REFERENCES users (id);
 ALTER TABLE chat_messages ADD FOREIGN KEY (chat_id) REFERENCES chats (id);
 ALTER TABLE activity ADD FOREIGN KEY (user_id) REFERENCES users (id);
+ALTER TABLE lessons ADD FOREIGN KEY (teacher_id) REFERENCES users (id);
+ALTER TABLE lesson_items ADD FOREIGN KEY (lesson_id) REFERENCES lessons (id);

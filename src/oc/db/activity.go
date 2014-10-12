@@ -22,7 +22,7 @@ func GetLast50Activities() ([]Activity, error) {
 		`SELECT a.id, users.name, a.action, a.time
 		 FROM activity a, users
 		 WHERE a.user_id=users.id
-		 ORDER BY a.id
+		 ORDER BY a.id DESC
 		 LIMIT (50)`)
 	if err != nil {
 		return activities, err
@@ -35,7 +35,7 @@ func GetLast50Activities() ([]Activity, error) {
 		if err != nil {
 			return activities, err
 		}
-		activity.Time = t.Format("02 Jan 06 15:04")
+		activity.Time = t.Format("Mon, 02 Jan 2006 15:04:05")
 		activities = append(activities, activity)
 	}
 	return activities, nil
@@ -50,7 +50,7 @@ func GetLast50UserActivities(username string) ([]Activity, error) {
 		 FROM activity a, users
 		 WHERE a.user_id=users.id AND
 		 users.lowername=$1
-		 ORDER BY a.id
+		 ORDER BY a.id DESC
 		 LIMIT (50)`, username)
 	if err != nil {
 		return activities, err
@@ -63,7 +63,7 @@ func GetLast50UserActivities(username string) ([]Activity, error) {
 		if err != nil {
 			return activities, err
 		}
-		activity.Time = t.Format("02 Jan 06 15:04")
+		activity.Time = t.Format("Mon, 02 Jan 2006 15:04:05")
 		activities = append(activities, activity)
 	}
 	return activities, nil

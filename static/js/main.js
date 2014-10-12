@@ -6,7 +6,7 @@ $(document).ready(function() {
         var $searchText = $('#search-text');
         var searchText = $searchText.val();
         $searchText.val("");
-        oc.search.page(searchText);
+        oc.search.page(searchText, '#search-text', true, null);
     });
     $('#login-form').submit(function(e) {
         e.preventDefault();
